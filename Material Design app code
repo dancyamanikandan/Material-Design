@@ -1,0 +1,114 @@
+
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(OwlMApp());
+}
+
+class OwlMApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Owl-M Study App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: HomePage(),
+    );
+  }
+}
+
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Owl-M Study App"),
+      ),
+      body: ListView(
+        children: <Widget>[
+          Card(
+            elevation: 4.0,
+            margin: EdgeInsets.all(10),
+            child: ListTile(
+              leading: Icon(Icons.book),
+              title: Text('Mathematics'),
+              subtitle: Text('Learn concepts and solve problems'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => StudyPage(subject: 'Mathematics'),
+                  ),
+                );
+              },
+            ),
+          ),
+          Card(
+            elevation: 4.0,
+            margin: EdgeInsets.all(10),
+            child: ListTile(
+              leading: Icon(Icons.science),
+              title: Text('Science'),
+              subtitle: Text('Explore theories and experiments'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => StudyPage(subject: 'Science'),
+                  ),
+                );
+              },
+            ),
+          ),
+          Card(
+            elevation: 4.0,
+            margin: EdgeInsets.all(10),
+            child: ListTile(
+              leading: Icon(Icons.language),
+              title: Text('Languages'),
+              subtitle: Text('Learn new languages and vocabulary'),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => StudyPage(subject: 'Languages'),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          // Action for new study session
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.blue,
+      ),
+    );
+  }
+}
+
+class StudyPage extends StatelessWidget {
+  final String subject;
+
+  StudyPage({required this.subject});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Study: $subject'),
+      ),
+      body: Center(
+        child: Text(
+          'Study materials for $subject will be displayed here.',
+          style: TextStyle(fontSize: 18),
+        ),
+      ),
+    );
+  }
+}
